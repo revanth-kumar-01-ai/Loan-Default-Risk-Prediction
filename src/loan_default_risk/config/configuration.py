@@ -5,6 +5,7 @@ from loan_default_risk.constants import *
 from loan_default_risk.utils.common import read_yaml, create_directories 
 from loan_default_risk.entity.config_entity import (
                                                     DataIngestionConfig,
+                                                    DataPreProcessingConfig
                                                     )
 
 
@@ -41,3 +42,21 @@ class ConfigurationManager:
 
 
         return data_ingestion_config
+    
+    # Data preprocessing ⚙️
+    def get_data_preprocessing_config(self) -> DataPreProcessingConfig:
+        config = self.config.data_preprocessing_model
+
+
+        create_directories([config.root_dir])
+
+
+        data_preprocessing_config = DataPreProcessingConfig(
+            root_dir=config.root_dir,
+            columnTransferPipeline=config.columnTransferPipeline,
+            outliersPipeline=config.outliersPipeline,
+            cleanDataset = config.cleanDataset
+        )
+
+
+        return data_preprocessing_config
