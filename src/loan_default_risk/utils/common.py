@@ -111,7 +111,7 @@ def load_bin(path: Path) -> Any:
 
 
 
-@ensure_annotations
+# @ensure_annotations
 def get_size(path: Path) -> str:
     """get size in KB
 
