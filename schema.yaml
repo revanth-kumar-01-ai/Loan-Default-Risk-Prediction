@@ -1,1 +1,41 @@
-key : schema
+COLUMNS:
+  numeric__months_loan_duration: float64
+  numeric__amount: float64
+  numeric__percent_of_income: float64
+  numeric__years_at_residence: float64
+  numeric__age: float64
+  numeric__existing_loans_count: float64
+  numeric__dependents: float64
+  categorical__checking_balance_< 0 DM: float64
+  categorical__checking_balance_> 200 DM: float64
+  categorical__checking_balance_unknown: float64
+  categorical__credit_history_good: float64
+  categorical__credit_history_perfect: float64
+  categorical__credit_history_poor: float64
+  categorical__credit_history_very good: float64
+  categorical__purpose_car: float64
+  categorical__purpose_car0: float64
+  categorical__purpose_education: float64
+  categorical__purpose_furniture/appliances: float64
+  categorical__purpose_renovations: float64
+  categorical__savings_balance_500 - 1000 DM: float64
+  categorical__savings_balance_< 100 DM: float64
+  categorical__savings_balance_> 1000 DM: float64
+  categorical__savings_balance_unknown: float64
+  categorical__employment_duration_4 - 7 years: float64
+  categorical__employment_duration_< 1 year: float64
+  categorical__employment_duration_> 7 years: float64
+  categorical__employment_duration_unemployed: float64
+  categorical__other_credit_none: float64
+  categorical__other_credit_store: float64
+  categorical__housing_own: float64
+  categorical__housing_rent: float64
+  categorical__job_skilled: float64
+  categorical__job_unemployed: float64
+  categorical__job_unskilled: float64
+  categorical__phone_yes: float64
+  categorical__default_yes: float64
+  
+  
+TARGET_COLUMN:
+  categorical__default_yes: float64

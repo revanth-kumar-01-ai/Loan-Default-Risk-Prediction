@@ -11,3 +11,9 @@ data_preprocessing_model:
   columnTransferPipeline: artifacts/data_preprocessing/Preprocessing_pipeline.joblib
   outliersPipeline: artifacts/data_preprocessing/outliers_pipeline.joblib
   cleanDataset: artifacts/data_preprocessing/preprocessedDataset.csv
+
+
+data_validation:
+  root_dir: artifacts/data_validation
+  cleanDataset: artifacts/data_preprocessing/preprocessedDataset.csv
+  STATUS_FILE: artifacts/data_validation/status.txt
