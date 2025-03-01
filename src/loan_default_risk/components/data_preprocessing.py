@@ -42,7 +42,7 @@ class DataPreprocessing:
 
                 # Create categorical pipeline
                 encoding_pipeline = Pipeline([
-                    ('oneHotEncode', OneHotEncoder(sparse_output=False))
+                    ('oneHotEncode', OneHotEncoder(sparse_output=False, drop = 'first'))
                 ])
 
                 # Combine numeric and categorical pipelines
