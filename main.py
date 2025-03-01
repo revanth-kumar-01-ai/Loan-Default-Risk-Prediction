@@ -4,6 +4,7 @@ from loan_default_risk.pipeline.stage_02_data_preprocessing import DataPreproces
 from loan_default_risk.pipeline.stage_03_data_validation import DataValidationTrainingPipeLine
 from loan_default_risk.pipeline.stage_04_data_transformation import DataTransformationTrainingPipeLine
 from loan_default_risk.pipeline.stage_05_model_Trainer import ModelTrainingPipeLine
+from loan_default_risk.pipeline.stage_06_model_evaluation import ModelEvalPipeLine
 
 
 STAGE_NAME = "Data Ingestion Stage"
@@ -63,6 +64,18 @@ STAGE_NAME = "Model Trainer Stage"
 try:
    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
    data_transformation = ModelTrainingPipeLine()
+   data_transformation.main()
+   logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+        logger.exception(e)
+        raise e
+
+
+STAGE_NAME = "Model Evaluation Stage"
+
+try:
+   logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+   data_transformation = ModelEvalPipeLine()
    data_transformation.main()
    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 except Exception as e:
