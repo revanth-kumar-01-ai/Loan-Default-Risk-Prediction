@@ -38,4 +38,4 @@ COLUMNS:
   
   
 TARGET_COLUMN:
-  categorical__default_yes: float64
+  name: categorical__default_yes

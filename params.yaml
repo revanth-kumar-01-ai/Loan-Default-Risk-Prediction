@@ -1,1 +1,3 @@
-key : params
+DecisionTreeClassifier:
+  max_depth: 6
+  criterion: gini
