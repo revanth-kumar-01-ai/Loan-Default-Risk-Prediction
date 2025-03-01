@@ -24,3 +24,9 @@ class DataValidationConfig:
     cleanDataset: Path
     all_schema: dict
 
+# data transformation 
+@dataclass(frozen=True)
+class DataTransformationConfig:
+    root_dir: Path
+    data_path: Path
+
