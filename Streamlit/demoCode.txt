@@ -1,0 +1,200 @@
+Here’s an example of what each file in the **`pages/`** directory should contain for a **Salary Price Prediction** Streamlit project:  
+
+---
+
+## **1. `pages/1_Home.py` (Home Page)**
+**What it shows?**  
+- **Project Title** (Salary Price Prediction)  
+- **Introduction to the project**  
+- **Brief about dataset & features**  
+
+### **Example Code**
+```python
+import streamlit as st
+import config
+
+st.title(config.APP_TITLE)
+st.write(config.APP_DESCRIPTION)
+
+st.image("assets/home_banner.png", use_column_width=True)
+
+st.subheader("About This Project")
+st.write("""
+This project predicts salary based on features like experience, skills, and location.
+It uses machine learning models trained on real salary datasets.
+""")
+
+st.write("Navigate through the sidebar to explore the data and make predictions!")
+```
+
+---
+
+## **2. `pages/2_Data_Exploration.py` (Data Analysis Page)**
+**What it shows?**  
+- **Dataset preview (DataFrame display)**  
+- **Statistical summaries** (mean, median, max, min)  
+- **Visualizations (Histograms, Correlation heatmaps)**  
+
+### **Example Code**
+```python
+import streamlit as st
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import config
+
+st.header("Data Exploration")
+
+# Load dataset
+df = pd.read_csv(config.DATA_PATH)
+st.write("Sample Data", df.head())
+
+# Show summary statistics
+st.write("Summary Statistics")
+st.write(df.describe())
+
+# Correlation heatmap
+st.subheader("Feature Correlation")
+fig, ax = plt.subplots()
+sns.heatmap(df.corr(), annot=True, cmap="coolwarm", ax=ax)
+st.pyplot(fig)
+```
+
+---
+
+## **3. `pages/3_Model_Training.py` (Model Details)**
+**What it shows?**  
+- **ML algorithms used** (Linear Regression, Random Forest, etc.)  
+- **Model performance metrics** (Accuracy, RMSE, R² score)  
+- **Graph comparing actual vs. predicted salaries**  
+
+### **Example Code**
+```python
+import streamlit as st
+import config
+import matplotlib.pyplot as plt
+import numpy as np
+
+st.header("Model Training & Performance")
+
+st.write("""
+We used multiple models to predict salary based on input features.
+Here are the performance metrics of our best-performing model.
+""")
+
+# Display model metrics
+st.write("**Model Accuracy: 87%**")
+st.write("**RMSE: 5,200**")
+
+# Sample graph of actual vs. predicted salaries
+st.subheader("Actual vs. Predicted Salaries")
+actual_salaries = np.array([40000, 50000, 60000, 70000, 80000])
+predicted_salaries = actual_salaries * 0.9 + 5000  # Example data
+
+fig, ax = plt.subplots()
+ax.plot(actual_salaries, label="Actual")
+ax.plot(predicted_salaries, label="Predicted", linestyle="dashed")
+ax.legend()
+st.pyplot(fig)
+```
+
+---
+
+## **4. `pages/4_Prediction.py` (Prediction Interface)**
+**What it shows?**  
+- **User input fields** (Experience, Job Role, Location)  
+- **Predict button to generate salary output**  
+- **Displays predicted salary**  
+
+### **Example Code**
+```python
+import streamlit as st
+from utils import model_utils
+import config
+
+st.header("Salary Prediction")
+
+# User inputs
+experience = st.slider("Years of Experience", 0, 20, 3)
+job_role = st.selectbox("Job Role", ["Software Engineer", "Data Scientist", "Web Developer"])
+location = st.selectbox("Location", ["New York", "Los Angeles", "Chicago"])
+
+# Load model
+model = model_utils.load_model()
+
+if st.button("Predict Salary"):
+    features = model_utils.preprocess_input(job_role, location, experience)
+    predicted_salary = model_utils.predict_price(model, features)
+    st.success(f"Estimated Salary: ${predicted_salary:,.2f}")
+```
+
+---
+
+## **5. `pages/5_Conclusion.py` (Final Summary)**
+**What it shows?**  
+- **Summary of project findings**  
+- **Future improvements & enhancements**  
+
+### **Example Code**
+```python
+import streamlit as st
+
+st.header("Conclusion & Future Scope")
+
+st.write("""
+This project successfully predicts salaries based on experience, job role, and location.
+The model achieves high accuracy and provides meaningful insights into salary trends.
+""")
+
+st.subheader("Future Improvements")
+st.write("""
+- Include more factors like education and skills.
+- Train the model on larger, more diverse datasets.
+- Optimize hyperparameters for better accuracy.
+""")
+
+st.write("Thank you for exploring this project! 🚀")
+```
+
+---
+
+## **Why This Structure is Useful?**  
+✅ **Each page has a specific purpose** – clear navigation.  
+✅ **Modular approach** – easy to update or add new pages.  
+✅ **User-friendly UI** – allows interaction and visualization.  
+
+This **exact structure works for any Streamlit project**, including **SalaryPricePrediction**! 🚀
+
+
+
+for one hot encoding
+import streamlit as st
+import numpy as np
+import joblib  # Load model
+
+# Load trained model
+model = joblib.load("models/salary_model.pkl")
+
+st.title("💰 Salary Prediction App")
+
+# 🚀 User Inputs
+experience = st.number_input("Enter Years of Experience:", min_value=0, max_value=50, value=3)
+
+job_role = st.selectbox("Select Job Role:", ["Software Engineer", "Data Scientist", "Web Developer"])
+location = st.selectbox("Select Location:", ["New York", "San Francisco", "Los Angeles"])
+
+# 🔹 Maintain Correct Order
+job_roles = ["Software Engineer", "Data Scientist", "Web Developer"]  # Fixed Order
+locations = ["New York", "San Francisco", "Los Angeles"]  # Fixed Order
+
+# One-hot encoding with correct positioning
+job_role_encoded = [int(job_role == role) for role in job_roles]
+location_encoded = [int(location == loc) for loc in locations]
+
+# Final input features (ensuring correct order)
+features = np.array([experience] + job_role_encoded + location_encoded).reshape(1, -1)
+
+# 🎯 Predict Salary
+if st.button("Predict Salary"):
+    predicted_salary = model.predict(features)[0]
+    st.success(f"💵 Estimated Salary: ${predicted_salary:,.2f}")
