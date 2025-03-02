@@ -1,8 +1,17 @@
-streamlit
-pandas
-numpy
-scikit-learn
+Flask
+Flask-Cors
 joblib
+matplotlib
+mlflow==2.2.2
+numpy
+pandas
+pyarrow==14.0.1
+PyYAML
+python-box==6.0.2
+scikit-learn
+streamlit
+tqdm
+types-PyYAML
 
 -e .
 
