@@ -2,12 +2,12 @@ Flask
 Flask-Cors
 joblib
 matplotlib
-mlflow==2.2.2
+mlflow
 numpy
 pandas
-pyarrow==14.0.1
+pyarrow
 PyYAML
-python-box==6.0.2
+python-box
 scikit-learn
 streamlit
 tqdm
