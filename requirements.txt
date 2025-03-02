@@ -1,14 +1,11 @@
+streamlit
 pandas
-mlflow==2.2.2
 numpy
 scikit-learn
-matplotlib
-python-box==6.0.2
-PyYAML 
-tqdm
 joblib
-types-PyYAML
-Flask
-Flask-Cors
 
 -e .
+
+
+
+
