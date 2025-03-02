@@ -10,7 +10,5 @@ joblib
 types-PyYAML
 Flask
 Flask-Cors
-streamlit
-plotly
 
 -e .
